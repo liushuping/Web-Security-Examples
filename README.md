@@ -29,7 +29,7 @@ To be able to run hands-on excercises, install below listed tools:
 [to be documented]
 
 ## Hands-on exercises
-### Basic authentication
+### Basic authentication (C# .NET Core)
 Firstly, view and run the demo web application project
  1. From terminal (cmd on Windows), navigate to authentication/basic folder
  2. Type `code .` from terminal to open the project
