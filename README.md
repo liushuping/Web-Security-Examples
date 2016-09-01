@@ -23,12 +23,12 @@ To be able to run hands-on excercises, install below listed tools:
 
 ## Hands-on exercises
 ### Basic authentication
-Firstly, view and run the demo web application project.
-1. From terminal (cmd on Windows), navigate to authentication/basic folder.
-2. Type `code .` from terminal to open the project.
-3. Type `dotnet run` from terminal to run the web application.
-4. From Chrome browser, enter http://localhost:5000/books.
-5. A list of books (in JSON format) will be displayed in browser.
+Firstly, view and run the demo web application project
+ 1. From terminal (cmd on Windows), navigate to authentication/basic folder
+ 2. Type `code .` from terminal to open the project
+ 3. Type `dotnet run` from terminal to run the web application
+ 4. From Chrome browser, enter http://localhost:5000/books
+ 5. A list of books (in JSON format) will be displayed in browser
 
 There is no authentication check in the API (http://localhost:5000/books), Now add basic authentication for it:
-1. 
+ 1. 
