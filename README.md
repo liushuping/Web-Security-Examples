@@ -3,6 +3,13 @@ Web Application Security Examples
 
 Example projects for demonstrating Web application securities
 
+## Table Of Contents
+ * [Prerequisites](#prerequisites)
+ * [Preparation](#preparation)
+ * [Guides for doing hands-on exercises](#guides-for-doing-hands-on-exercises)
+ * [Hands-on exercises](#hands-on-exercises)
+   * [Basic authentication](#basic-authentication)
+
 ## Prerequisites
 * Basic knowledge of C#
 * Basic knowledge of JavaScript and HTML
