@@ -30,7 +30,7 @@ To be able to run hands-on excercises, install below listed tools:
 
 ## Hands-on exercises (C# .NET Core)
 ### Basic authentication
-Firstly, view and run the Books.Api web application project
+Firstly, view and run the BooksOnline.Api web application project
  1. From terminal (cmd on Windows), navigate to `BooksOnline.Api` folder
  2. Type `code .` from terminal to open the project
  3. Type `dotnet run` from terminal to run the web application
@@ -48,3 +48,18 @@ There is no authentication check in the API (http://localhost:5000/books), Now a
  8. For the authentication details, go to `BasicAuthenticationHandler.cs` to view the details.
  
 ![img](images/basic_auth_header.png)
+
+## Forms authentication
+View and run the BooksOnline web application project
+ 1. From terminal (cmd on Windows), navigate to `BooksOnline` folder
+ 2. Type `dotnet run` from terminal to run the project
+ 3. From Chrome browser, enter http://localhost:5001
+ 4. The home page is displayed
+ 
+There is no authentication of the home page, now add forms authentication for it:
+ 1. Locate file `HomeController.cs`
+ 2. Add `[Authorize]` attribute at class level
+ 3. Re-run the application and visit http://localhost:5001
+ 4. The page should be redirected to login page
+ 5. Open browser's Developer Tools window to check the network traffics from login process
+ 6. Input the hard-coded credentials `admin:amin`, then home page should be returned.
