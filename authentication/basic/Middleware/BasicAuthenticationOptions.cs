@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 
@@ -17,5 +18,10 @@ public class BasicAuthenticationOptions : AuthenticationOptions, IOptions<BasicA
         {
             return this;
         }
+    }
+
+    public Func<string, string, bool> ValidateCredentials
+    {
+        get; set;
     }
 }

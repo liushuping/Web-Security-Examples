@@ -54,10 +54,16 @@ namespace BooksOnline
 
             app.UseBasicAuthentication(new BasicAuthenticationOptions
             {
-                Realm = "Test Realm"
+                Realm = "Books online",
+                ValidateCredentials = Validate
             });
 
             app.UseMvc();
+        }
+
+        private bool Validate(string username, string password) 
+        {
+            return username == "admin" && password == "admin";
         }
     }
 }

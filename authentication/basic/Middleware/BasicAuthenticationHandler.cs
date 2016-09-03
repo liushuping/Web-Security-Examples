@@ -15,7 +15,8 @@ public class BasicAuthenticationHandler : AuthenticationHandler<BasicAuthenticat
             var token = authHeader.Substring("Basic ".Length).Trim();
             var credentialstring = Encoding.UTF8.GetString(Convert.FromBase64String(token));
             var credentials = credentialstring.Split(':');
-            if (credentials[0] == "admin" && credentials[1] == "admin")
+            var validate = Options.ValidateCredentials;
+            if (validate != null && validate(credentials[0], credentials[1])) 
             {
                 var claims = new[] { new Claim("name", credentials[0]), new Claim(ClaimTypes.Role, "Admin") };
                 var identity = new ClaimsIdentity(claims, "Basic");
