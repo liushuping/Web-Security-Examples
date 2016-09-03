@@ -42,6 +42,7 @@ There is no authentication check in the API (http://localhost:5000/books), Now a
  2. Add `[Authorize(ActiveAuthenticationSchemes = "Basic")]` attribute to the `Get()` method to add Basic authentication for the API
  3. Re-run the application and visit http://localhost:5000/books
  4. There should be a popup windows asking for credentials
- 5. Try to input some random invalid credentials, browser should keep asking credentials
- 6. Input the hard-coded credentials `admin:admin`, then the books list should be returned.
- 7. For the authentication details, go to `BasicAuthenticationHandler.cs` to view the details.
+ 5. Open browser's Developer Tools window to check Authorization header from below requests / responses
+ 6. Try to input some random invalid credentials, browser should keep asking credentials
+ 7. Input the hard-coded credentials `admin:admin`, then the books list should be returned.
+ 8. For the authentication details, go to `BasicAuthenticationHandler.cs` to view the details.
