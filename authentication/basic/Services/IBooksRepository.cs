@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using BooksOnline.Models;
 
-public interface IBooksRepository
+namespace BooksOnline.Services
 {
-    IEnumerable<Book> GetBooks();
+    public interface IBooksRepository
+    {
+        IEnumerable<Book> GetBooks();
+    }
 }

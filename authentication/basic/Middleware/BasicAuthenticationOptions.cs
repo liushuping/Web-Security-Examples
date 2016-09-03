@@ -2,26 +2,29 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 
-public class BasicAuthenticationOptions : AuthenticationOptions, IOptions<BasicAuthenticationOptions>
+namespace BooksOnline.middleware
 {
-    public BasicAuthenticationOptions()
+    public class BasicAuthenticationOptions : AuthenticationOptions, IOptions<BasicAuthenticationOptions>
     {
-        AuthenticationScheme = "Basic";
-        AutomaticAuthenticate = false;
-    }
-
-    public string Realm { get; set; }
-
-    public BasicAuthenticationOptions Value
-    {
-        get
+        public BasicAuthenticationOptions()
         {
-            return this;
+            AuthenticationScheme = "Basic";
+            AutomaticAuthenticate = false;
         }
-    }
 
-    public Func<string, string, bool> ValidateCredentials
-    {
-        get; set;
+        public string Realm { get; set; }
+
+        public BasicAuthenticationOptions Value
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public Func<string, string, bool> ValidateCredentials
+        {
+            get; set;
+        }
     }
 }

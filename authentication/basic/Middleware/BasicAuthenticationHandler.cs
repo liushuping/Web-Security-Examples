@@ -5,45 +5,48 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Authentication;
 
-public class BasicAuthenticationHandler : AuthenticationHandler<BasicAuthenticationOptions>
+namespace BooksOnline.middleware
 {
-    protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+    public class BasicAuthenticationHandler : AuthenticationHandler<BasicAuthenticationOptions>
     {
-        try
+        protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            var authHeader = Context.Request.Headers["Authorization"][0];
-            var token = authHeader.Substring("Basic ".Length).Trim();
-            var credentialstring = Encoding.UTF8.GetString(Convert.FromBase64String(token));
-            var credentials = credentialstring.Split(':');
-            var validate = Options.ValidateCredentials;
-            if (validate != null && validate(credentials[0], credentials[1])) 
+            try
             {
-                var claims = new[] { new Claim("name", credentials[0]), new Claim(ClaimTypes.Role, "Admin") };
-                var identity = new ClaimsIdentity(claims, "Basic");
-                Context.User = new ClaimsPrincipal(identity);
-                var properties = new AuthenticationProperties();
-                var ticket = new AuthenticationTicket(Context.User, properties, "Basic");
-                return await Task.FromResult(AuthenticateResult.Success(ticket));
+                var authHeader = Context.Request.Headers["Authorization"][0];
+                var token = authHeader.Substring("Basic ".Length).Trim();
+                var credentialstring = Encoding.UTF8.GetString(Convert.FromBase64String(token));
+                var credentials = credentialstring.Split(':');
+                var validate = Options.ValidateCredentials;
+                if (validate != null && validate(credentials[0], credentials[1]))
+                {
+                    var claims = new[] { new Claim("name", credentials[0]), new Claim(ClaimTypes.Role, "Admin") };
+                    var identity = new ClaimsIdentity(claims, "Basic");
+                    Context.User = new ClaimsPrincipal(identity);
+                    var properties = new AuthenticationProperties();
+                    var ticket = new AuthenticationTicket(Context.User, properties, "Basic");
+                    return await Task.FromResult(AuthenticateResult.Success(ticket));
+                }
+
+                return await Fail();
+            }
+            catch
+            {
+                return await Fail();
+            }
+        }
+
+        private async Task<AuthenticateResult> Fail()
+        {
+            var realm = Options.Realm;
+            Context.Response.StatusCode = 401;
+            if (string.IsNullOrWhiteSpace(realm))
+            {
+                realm = "My Realm";
             }
 
-            return await Fail();
+            Context.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{realm}\"");
+            return await Task.FromResult(AuthenticateResult.Fail("Authentication credentials are missing or invalid."));
         }
-        catch
-        {
-            return await Fail();
-        }
-    }
-
-    private async Task<AuthenticateResult> Fail()
-    {
-        var realm = Options.Realm;
-        Context.Response.StatusCode = 401;
-        if (string.IsNullOrWhiteSpace(realm))
-        {
-            realm = "My Realm";
-        }
-
-        Context.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{realm}\"");
-        return await Task.FromResult(AuthenticateResult.Fail("Authentication credentials are missing or invalid."));
     }
 }
