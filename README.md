@@ -31,7 +31,7 @@ To be able to run hands-on excercises, install below listed tools:
 ## Hands-on exercises (C# .NET Core)
 ### Basic authentication
 Firstly, view and run the Books.Api web application project
- 1. From terminal (cmd on Windows), navigate to authentication/basic folder
+ 1. From terminal (cmd on Windows), navigate to `BooksOnline.Api` folder
  2. Type `code .` from terminal to open the project
  3. Type `dotnet run` from terminal to run the web application
  4. From Chrome browser, enter http://localhost:5000/books
