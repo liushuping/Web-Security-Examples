@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using BooksOnline.Models;
 
 namespace BooksOnline.Controllers
 {
+    [Route("[controller]")]
     public class BooksController : Controller
     {
         private IBooksRepository _repository;
@@ -12,11 +12,11 @@ namespace BooksOnline.Controllers
         {
             _repository = repository;
         }
-        
-        [HttpGet]
-        public IEnumerable<Book> Index()
+
+        [Authorize(ActiveAuthenticationSchemes = "Basic")]
+        public ActionResult Get()
         {
-            return _repository.GetBooks();
+            return Ok(_repository.GetBooks());
         }
     }
 }
