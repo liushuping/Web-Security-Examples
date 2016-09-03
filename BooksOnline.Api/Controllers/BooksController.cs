@@ -14,7 +14,7 @@ namespace BooksOnline.Controllers
             _repository = repository;
         }
 
-        [Authorize(ActiveAuthenticationSchemes = "Basic")]
+        // [Authorize(ActiveAuthenticationSchemes = "Basic")]
         public ActionResult Get()
         {
             return Ok(_repository.GetBooks());
