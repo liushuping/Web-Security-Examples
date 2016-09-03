@@ -46,3 +46,5 @@ There is no authentication check in the API (http://localhost:5000/books), Now a
  6. Try to input some random invalid credentials, browser should keep asking credentials
  7. Input the hard-coded credentials `admin:admin`, then the books list should be returned.
  8. For the authentication details, go to `BasicAuthenticationHandler.cs` to view the details.
+ 
+![img](images/basic_auth_header.png)
