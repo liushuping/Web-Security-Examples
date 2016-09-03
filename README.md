@@ -28,8 +28,8 @@ To be able to run hands-on excercises, install below listed tools:
 ## Guides for doing hands-on exercises
 [to be documented]
 
-## Hands-on exercises
-### Basic authentication (C# .NET Core)
+## Hands-on exercises (C# .NET Core)
+### Basic authentication
 Firstly, view and run the Books.Api web application project
  1. From terminal (cmd on Windows), navigate to authentication/basic folder
  2. Type `code .` from terminal to open the project
