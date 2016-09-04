@@ -9,6 +9,7 @@ Example projects for demonstrating Web application securities
  * [Guides for doing hands-on exercises](#guides-for-doing-hands-on-exercises)
  * [Hands-on exercises](#hands-on-exercises)
    * [Basic authentication](#basic-authentication)
+   * [Forms authentication](#forms-authentication)
 
 ## Prerequisites
 * Basic knowledge of C#
