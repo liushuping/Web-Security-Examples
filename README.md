@@ -65,3 +65,13 @@ There is no authentication of the home page, now add forms authentication for it
  5. Open browser's Developer Tools window to check the network traffics from login process
  6. Input the hard-coded credentials `test@localhost:password`, then home page should be returned.
  7. Read the `Login(LoginViewModel model, string returnUrl = null)` method from file `AccountController.cs` understand how the user is authenticated.
+ 
+### Claims-based authenticaion
+This exercise requires an OpenId Connect authentication service, Azure Active Directory is one of the services.
+ 1. Register http://localhost:5001 in an Azure Active Directory instance
+ 2. find and uncomment the block `app.UseOpenIdConnectAuthentication` to enable OpenID Connect authentication
+ 3. Input the registered client ID and authority for the OpendID Connect options
+ 4. Add `[Authorize(ActiveAuthenticationSchemes="BooksOnlineCookie")]` attribute to `HomeController.cs` as class level
+ 5. Re-run the application and visit http://localhost:5001
+ 6. The page should be redirected to Azure Active Directory login page.
+
