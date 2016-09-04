@@ -77,9 +77,23 @@ namespace BooksOnline
                 AuthenticationScheme = "BooksOnlineCookie",
                 LoginPath = new PathString("/Account/Login"),
                 AccessDeniedPath = new PathString("/Account/Forbidden/"),
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true
+                AutomaticAuthenticate = false,
+                AutomaticChallenge = false
             });
+
+            /*******************************************************************************
+             * [Exercise] Uncomment below lines for exercising claims-based authentication *
+             *******************************************************************************/
+            // app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            // {
+            //     AuthenticationScheme = "BooksOnlineOpenId",
+            //     // Replace the {aad-application-clientId} with an actual clientId from an registered AAD application
+            //     ClientId = "{aad-application-clientId",
+            //     // Replace the {aad-instance-name} with an actual Azure Active Directory
+            //     Authority = "https://login.microsoftonline.com/{aad-instance-name}.onmicrosoft.com",
+            // });
+
+
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 

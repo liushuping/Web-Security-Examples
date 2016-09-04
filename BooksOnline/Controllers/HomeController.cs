@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BooksOnline.Controllers
 {
-    // [Authorize]
+    // [Authorize(ActiveAuthenticationSchemes="BooksOnlineCookie")]
     public class HomeController : Controller
     {
         public IActionResult Index()
