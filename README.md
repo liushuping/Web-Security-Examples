@@ -50,7 +50,7 @@ There is no authentication check in the API (http://localhost:5000/books), Now a
  
 ![img](images/basic_auth_header.png)
 
-## Forms authentication
+### Forms authentication
 View and run the BooksOnline web application project
  1. From terminal (cmd on Windows), navigate to `BooksOnline` folder
  2. Type `dotnet run` from terminal to run the project
