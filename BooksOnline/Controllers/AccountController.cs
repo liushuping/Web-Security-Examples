@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -59,10 +57,20 @@ namespace BooksOnline.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                // var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+                var result = Microsoft.AspNetCore.Identity.SignInResult.Failed;
+                if(model.Email == "test@localhost" && model.Password == "password") 
+                {
+                    result = Microsoft.AspNetCore.Identity.SignInResult.Success;
+                }
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
+                    var claims = new[] { new Claim("name", model.Email), new Claim(ClaimTypes.Role, "Admin") };
+                    var identity = new ClaimsIdentity(claims, "BooksOnlineCookie");
+                    var principal = new ClaimsPrincipal(identity);
+                    await HttpContext.Authentication.SignInAsync("BooksOnlineCookie", principal);
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

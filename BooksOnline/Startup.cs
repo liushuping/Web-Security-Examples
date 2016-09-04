@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using BooksOnline.Data;
 using BooksOnline.Models;
 using BooksOnline.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace BooksOnline
 {
@@ -74,6 +71,15 @@ namespace BooksOnline
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                AuthenticationScheme = "BooksOnlineCookie",
+                LoginPath = new PathString("/Account/Login"),
+                AccessDeniedPath = new PathString("/Account/Forbidden/"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
