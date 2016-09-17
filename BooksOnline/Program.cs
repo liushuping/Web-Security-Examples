@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
 namespace BooksOnline
@@ -16,7 +12,7 @@ namespace BooksOnline
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:5001")
+                .UseUrls("http://*:5001")
                 .Build();
 
             host.Run();

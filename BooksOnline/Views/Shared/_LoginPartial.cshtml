@@ -1,18 +1,19 @@
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
 @using BooksOnline.Models
-
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@if (SignInManager.IsSignedIn(User))
+@if (User.Identity.IsAuthenticated || SignInManager.IsSignedIn(User))
 {
     <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <!--<a asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>-->
+                <a href="#">Hello @UserManager.GetUserName(User)!</a>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                <a href="/account/logoff">Log off</a>
             </li>
         </ul>
     </form>
@@ -20,7 +21,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+        <!--<li><a asp-controller="Account" asp-action="Register">Register</a></li>-->
         <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
     </ul>
 }
